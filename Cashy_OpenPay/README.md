@@ -1,42 +1,71 @@
 # Node OpenPay ejemplo
 
-Este ejemplo ilustra una conexión al API de OpenPay desde nodeJs usando Express framework
+Este ejemplo ilustra una conexión al API de OpenPay desde nodeJs usando Express framework MVC
 Permite Crear Clientes Openpay y listarlos
-
-Puede realizarse vía API o vía aplicacion web desde http://localhost:8080
-
-
-
-
-
-- node and npm
-
 ## Usage
 
 1. Clone the repo: `git clone git@github.com:scotch-io/node-token-authentication`
 2. Install dependencies: `npm install`
-3. Change SECRET in `config.js`
-4. Add your own MongoDB database to `config.js`
-5. Start the server: `node server.js`
-6. Create sample user by visiting: `http://localhost:8080/setup`
 
-Once everything is set up, we can begin to use our app by creating and verifying tokens.
 
-### Getting a Token
+Puede operarse vía API http://localhost:8080/api
 
-Send a `POST` request to `http://localhost:8080/api/authenticate` with test user parameters as `x-www-form-urlencoded`. 
+  1. Autenticación 
+    POST http://localhost:8080/api/auth
+    BODY:
+    {
+      userName:"OtroUser",
+      password: "xx223344"
+	  }
+    RESPONSE:{
+      "success": true,
+      "message": "Enjoy your token!",
+      "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhZG1pbiI6IlJhZmEiLCJpYXQiOjE1MzIzNzE5NTMsImV4cCI6MTUzMjQ1ODM1M30.qf05Fo1FqijyQNbPT86-ZTYAdH-4XIrbqe2TuxndcMA"
+    }
 
-```
-  {
-    name: 'Nick Cerminara',
-    password: 'password'
-  }
-```
+  2. LISTAR LOS CLIENTES CREADOS EN OPENPAY
+    GET http://localhost:8080/api/openpayCustomers?token=<EL TOKEN RECIBIDO EN EL PASO 1>
+    El token puede ser envuado tambien como header en la peticion 
 
-### Verifying a Token and Listing Users
+  3. CREAR UN NUEVO CLIENTE EN OPENPAY
+    POST http://localhost:8080/api/openpayCustomers?token
+      BODY:
+       {
+          "name":"JULIAN RETANA FLORES",
+          "email":"solidvan22@gmail.com",
+          "last_name":"SADASD",
+            "address":{
+              "city":"Mexico DF",
+              "state":"Distrito Federal",
+              "line1":"Recreo 97",
+              "line2":"",
+              "postal_code":"03100",
+              "country_code":"MX"
+        
+            },
+          "phone_number":"5548106077"
+    }
+      RESPONSE:{
+        "id": "aym3qbog5ohodvkejznx",
+        "name": "JULIAN RETANA FLORES",
+        "last_name": "SADASD",
+        "email": "solidvan22@gmail.com",
+        "phone_number": "5548106077",
+        "status": "active",
+        "balance": 0,
+        "address": {
+            "line1": "Recreo 97",
+            "line2": "",
+            "line3": null,
+            "state": "Distrito Federal",
+            "city": "Mexico DF",
+            "postal_code": "03100",
+            "country_code": "MX"
+        },
+        "creation_date": "2018-07-23T21:10:47-05:00",
+        "external_id": null,
+        "clabe": null
+        }
 
-Send a `GET` request to `http://localhost:8080/api/users` with a header parameter of `x-access-token` and the token.
-
-You can also send the token as a URL parameter: `http://localhost:8080/api/users?token=YOUR_TOKEN_HERE`
-
-Or you can send the token as a POST parameter of `token`.
+Vía aplicacion web desde http://localhost:8080
+  Login: Consultar el archivo app/models/user.js
