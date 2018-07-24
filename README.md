@@ -6,8 +6,8 @@ Permite Crear Clientes Openpay y listarlos
 ## Usage
 Instalación
 
-  1. Install dependencies: `npm install`
-  2. Start the server: `node server.js`
+  1. Instalar dependencias: `npm install`
+  2. Iniciar el servidor: `node server.js`
 
 
 Puede realizarse vía API http://localhost:8080/api
@@ -33,7 +33,7 @@ Puede realizarse vía API http://localhost:8080/api
 
   3. CREAR UN NUEVO CLIENTE EN OPENPAY
   
-    POST http://localhost:8080/api/openpayCustomers?token
+    POST http://localhost:8080/api/openpayCustomers?token=<EL TOKEN RECIBIDO EN EL PASO 1>
       BODY:
       
        {
@@ -54,12 +54,3 @@ Puede realizarse vía API http://localhost:8080/api
 
 Vía aplicacion web desde http://localhost:8080
   Login: Consultar el archivo app/models/user.js
-
-
-
-
-
-
-
-
-
