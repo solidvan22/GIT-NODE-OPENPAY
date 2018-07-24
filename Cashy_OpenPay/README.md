@@ -29,8 +29,7 @@ Puede operarse vía API http://localhost:8080/api
 
   3. CREAR UN NUEVO CLIENTE EN OPENPAY
     POST http://localhost:8080/api/openpayCustomers?token
-      BODY:
-       {
+      BODY:{
           "name":"JULIAN RETANA FLORES",
           "email":"solidvan22@gmail.com",
           "last_name":"SADASD",
@@ -44,7 +43,7 @@ Puede operarse vía API http://localhost:8080/api
         
             },
           "phone_number":"5548106077"
-    }
+      }
       RESPONSE:{
         "id": "aym3qbog5ohodvkejznx",
         "name": "JULIAN RETANA FLORES",
